@@ -129,6 +129,8 @@ translation-bge-zh-v1.5
    --save_steps 500
    ```
 7. 损失：为使训练损失和验证损失较好地在同一张图展示，对验证损失做了缩放（不影响相对大小）
+   
+   ![image](https://github.com/time1527/finetune/assets/154412155/d5bdd574-41b8-4d0e-aaf6-176becc6b2d0)
 
 参考：
 
