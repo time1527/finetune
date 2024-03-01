@@ -136,6 +136,9 @@ translation-chatglm3-6b
    ```bash
    python chat.py ./merged --prompt-template chatglm3 --system "你是一名文言文翻译家，能够将文言文准确优雅地翻译成现代白话文。" --save_path ./ft_res.jsonl
    ```
+其他：
+
+![image](https://github.com/time1527/finetune/assets/154412155/4e7f0863-c8c9-46f1-9246-0f6cc6c8f717)
 
 参考：
 
