@@ -77,14 +77,16 @@ translation-chatglm3-6b
 2. 数据处理与切分：`prepare_data.ipynb`，代码中原始数据用的是绝对路径
 
    原始数据来自：https://github.com/VMIJUNV/chinese-poetry-and-prose
+   
    处理：对于每个样本，提取content和translation
+   
    切分：打乱后保留0.95用作训练集，0.05用作和原始模型做效果比较
 
    ```bash
    cd ~/finetune/translation-chatglm3-6b
    # 运行prepare_data.ipynb
    ```
-3. 配置文件：`chatglm3_6b_qlora.py`
+4. 配置文件：`chatglm3_6b_qlora.py`
 
    可通过类似 `xtuner copy-cfg chatglm3_6b_qlora_oasst1_e3 .`将内置配置复制到当前路径再做修改
 
@@ -105,13 +107,13 @@ translation-chatglm3-6b
    5. train_dataset：
       1. `dataset=dict(type=load_dataset, path="json",data_files=dict(train=data_path))`
       2. `dataset_map_fn=None`
-4. 模型：本地路径 `/home/dola/model/ZhipuAI/chatglm3-6b`
-5. 微调：
+5. 模型：本地路径 `/home/dola/model/ZhipuAI/chatglm3-6b`
+6. 微调：
 
    ```bash
    xtuner train ./chatglm3_6b_qlora.py --deepspeed deepspeed_zero2
    ```
-6. 模型转换与合并：
+7. 模型转换与合并：
 
    ```bash
    # 转换:xtuner convert pth_to_hf ${CONFIG_NAME_OR_PATH} ${PTH_file_dir} ${SAVE_PATH}
@@ -129,7 +131,7 @@ translation-chatglm3-6b
    #     ${SAVE_PATH} \
    #     --max-shard-size 2GB
    ```
-7. 对话：`chat.py`改自 `xtuner chat`，注意固定了测试集路径
+8. 对话：`chat.py`改自 `xtuner chat`，注意固定了测试集路径
 
    ```bash
    python chat.py ./merged --prompt-template chatglm3 --system "你是一名文言文翻译家，能够将文言文准确优雅地翻译成现代白话文。" --save_path ./ft_res.jsonl
